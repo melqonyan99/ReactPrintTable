@@ -7,7 +7,29 @@ export const TableData = [
       classification: "Leader",
       town: "Sample Town 1",
     },
-    "5th": [],
+    "5th": [
+      {
+        id: "55553434",
+        full_name: "Joshua Tan",
+        contact_number: "53443445",
+        classification: "Leader",
+        town: "Sample Town 1",
+      },
+      {
+        id: "3455",
+        full_name: "Lester Wright",
+        contact_number: "75675677",
+        classification: "Leader",
+        town: "Sample Town 1",
+      },
+      {
+        id: "867867876769",
+        full_name: "Seth Coold",
+        contact_number: "878768",
+        classification: "Leader",
+        town: "Sample Town 1",
+      },
+    ],
     "3rd": {
       id: "6566",
       full_name: "Charles Dain",

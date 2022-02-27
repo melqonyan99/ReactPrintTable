@@ -69,12 +69,18 @@ export const TableComponent = () => {
 
   return (
     <Grid container direction="column">
-      <Grid>
+      <Grid
+        ref={printableTable}
+        style={{ paddingLeft: "10px", paddingRight: "10px" }}
+      >
         <div>
           <h4 style={{ marginBottom: 0 }}>This is header.</h4>
           <h4 style={{ marginTop: 0, marginBottom: "5px" }}>Page {page + 1}</h4>
         </div>
-        <TableContainer component={Paper} ref={printableTable}>
+        <TableContainer
+          style={{ boxShadow: "0px 0px 5px -3px" }}
+          component={Paper}
+        >
           <Table className={classes.table} aria-label="simple table">
             <TableHead>
               <TableRow>
