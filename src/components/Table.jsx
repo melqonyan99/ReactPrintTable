@@ -47,12 +47,12 @@ export const TableComponent = () => {
     console.log(TableData);
     const rowsCountArr = [];
     let modifiedData = {};
-    TableData.map((table, index) => {
+    TableData.forEach((table, index) => {
       const modifiedDataArray = [];
       let rowsCount = 0;
-      TablePages.map((pageNumber) => {
+      TablePages.forEach((pageNumber) => {
         if (Array.isArray(table[pageNumber])) {
-          table[pageNumber].map((rowData) => {
+          table[pageNumber].forEach((rowData) => {
             rowsCount++;
             modifiedDataArray.push(rowData);
           });
