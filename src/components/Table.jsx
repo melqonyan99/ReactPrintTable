@@ -13,6 +13,7 @@ import TableRow from "@material-ui/core/TableRow";
 import TablePagination from "@material-ui/core/TablePagination";
 import Paper from "@material-ui/core/Paper";
 import ReactToPrint from "react-to-print";
+import { Select, MenuItem } from "@material-ui/core";
 // import { AllDataTable } from "./AllDataTable";
 
 const useStyles = makeStyles({
@@ -67,6 +68,11 @@ export const TableComponent = () => {
     setData(modifiedData);
   }, []);
 
+  const handlePageChange = (e) => {
+    setPage(e.target.value);
+    console.log(e.target.value);
+  };
+
   return (
     <Grid container direction="column">
       <Grid
@@ -79,6 +85,7 @@ export const TableComponent = () => {
         </div>
         <TableContainer
           style={{ boxShadow: "0px 0px 5px -3px" }}
+          className="table"
           component={Paper}
         >
           <Table className={classes.table} aria-label="simple table">
@@ -110,6 +117,8 @@ export const TableComponent = () => {
             </TableBody>
           </Table>
         </TableContainer>
+      </Grid>
+      <div style={{ display: "flex", flexDirection: "row-reverse" }}>
         <TablePagination
           component="div"
           count={TableData.length}
@@ -122,7 +131,12 @@ export const TableComponent = () => {
           onPageChange={handleChangePage}
           onRowsPerPageChange={handleChangeRowsPerPage}
         />
-      </Grid>
+        <Select value={page} onChange={handlePageChange}>
+          {TableData.map((value, index) => {
+            return <MenuItem value={index}>{index + 1}</MenuItem>;
+          })}
+        </Select>
+      </div>
       {/* <AllDataTable ref={allDataPrintableTable} /> */}
       <Grid
         style={{
@@ -154,7 +168,7 @@ export const TableComponent = () => {
                 style={{ marginRight: "10px" }}
                 endIcon={<SaveAltIcon />}
               >
-                Export PDF
+                Print Page {page + 1}
               </Button>
             );
           }}
