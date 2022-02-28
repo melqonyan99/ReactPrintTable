@@ -82,7 +82,6 @@ export const TableComponent = () => {
 
     setFullData(modifiedDataArray);
     setData(modifiedData);
-    console.log(modifiedData);
   }, []);
 
   const handlePageChange = (e) => {
