@@ -31,3 +31,9 @@ code {
     word-spacing: 5px !important;
   }
 }
+
+@media print {
+  .pagebreak {
+    page-break-before: always;
+  }
+}

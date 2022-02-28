@@ -82,6 +82,7 @@ export const TableComponent = () => {
 
     setFullData(modifiedDataArray);
     setData(modifiedData);
+    console.log(modifiedData);
   }, []);
 
   const handlePageChange = (e) => {
@@ -146,7 +147,60 @@ export const TableComponent = () => {
         </TableContainer>
       </Grid>
 
-      <TableContainer ref={allDataPrintableTable} component={Paper}>
+      <div
+        ref={allDataPrintableTable}
+        style={{
+          display: !isShowedPaginatedTable ? "table" : "none",
+          width: "100%",
+        }}
+      >
+        {Object.keys(data).map((key, index) => {
+          return (
+            <div className="pagebreak" style={{ width: "100%" }}>
+              <div className="header">
+                <h4 style={{ marginBottom: 0 }}>This is header.</h4>
+                <h4 style={{ marginTop: 0, marginBottom: "5px" }}>
+                  Page {index + 1}
+                </h4>
+              </div>
+              <TableContainer component={Paper} style={{ width: "100%" }}>
+                <Table aria-label="simple table">
+                  <TableHead>
+                    <TableRow>
+                      {columns.map((column) => (
+                        <TableCell
+                          key={column.id}
+                          align={column.align}
+                          style={{
+                            minWidth: column.minWidth,
+                            fontWeight: "bold",
+                          }}
+                        >
+                          {column.label}
+                        </TableCell>
+                      ))}
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    {data[key].map((row) => (
+                      <TableRow key={row.id}>
+                        <TableCell component="th" scope="row">
+                          {row.town}
+                        </TableCell>
+                        <TableCell>{row.classification}</TableCell>
+                        <TableCell>{row.full_name}</TableCell>
+                        <TableCell>{row.contact_number}</TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </TableContainer>
+            </div>
+          );
+        })}
+      </div>
+
+      {/* <TableContainer ref={allDataPrintableTable} component={Paper}>
         <Table
           style={{ display: !isShowedPaginatedTable ? "table" : "none" }}
           aria-label="simple table"
@@ -178,7 +232,7 @@ export const TableComponent = () => {
               ))}
           </TableBody>
         </Table>
-      </TableContainer>
+      </TableContainer> */}
 
       <div style={{ display: "flex", flexDirection: "row-reverse" }}>
         <TablePagination
